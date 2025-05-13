@@ -1,0 +1,52 @@
+<p-drawer 
+    [visible]="isDrawerVisible()" 
+    (onHide)="closeDrawer()"
+    styleClass="bg-white"
+>
+    <ng-template #header>
+        <div class="flex items-center gap-2">
+            <img src="assets/images/logo.svg" class="w-[25px] h-[25px] rounded-full m-1" alt="lobo-estoque-logo" draggable="false" />
+            <div class="flex flex-col">
+                <h1 class="font-bold text-[14px]">BTA IRRIGAÇÕES</h1>
+                <h2 class="font-normal text-[11px]">OS</h2>
+            </div>
+        </div>
+    </ng-template>
+
+    <ul class="sidenav-nav overflow-hidden">
+        @for (nav of sidenavData; track nav.label) {
+            <li class="sidenav-nav-item">
+                <a 
+                    [routerLink]="[ nav.link ]" class="sidenav-nav-link" 
+                    routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                    tooltipPosition="right"
+                    (click)="this.closeDrawer()"
+                >
+                    <i [ngClass]="[nav.icon]" class="sidenav-link-icon"></i>
+                    <span class="sidenav-link-text">{{ nav.label }}</span> 
+                </a>
+            </li>
+        }
+    </ul>
+
+    <ng-template #footer>
+        <div class="flex items-center gap-4 w-full">
+            <p-button 
+                label="Suporte" 
+                icon="pi pi-question-circle" 
+                rounded 
+                styleClass="w-full" 
+                class="w-full" 
+                severity="secondary" 
+            />
+            <p-button 
+                label="Sair" 
+                icon="pi pi-sign-out" 
+                rounded 
+                styleClass="w-full" 
+                class="w-full" 
+                severity="danger" 
+            />
+        </div>
+    </ng-template>
+</p-drawer>

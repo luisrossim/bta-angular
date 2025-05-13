@@ -1,0 +1,31 @@
+<form [formGroup]="loginForm" (ngSubmit)="actionsForLoginSuccess()" class="grid grid-cols-1 gap-4 w-full">
+    <p-floatlabel variant="on" class="w-full">
+        <input 
+            pInputText 
+            id="login" 
+            formControlName="login" 
+            autocomplete="off" 
+            class="w-full py-3"
+        />
+        <label for="login">Email</label>
+    </p-floatlabel>
+    
+    <p-floatlabel variant="on">
+        <input 
+            pInputText 
+            type="password" 
+            id="password" 
+            formControlName="password" 
+            autocomplete="off" 
+            class="w-full py-3"
+        />
+        <label for="password">Senha</label>
+    </p-floatlabel>
+
+    <p-button 
+        type="submit" 
+        label="Acessar"
+        severity="primary"
+        styleClass="!px-10 mt-8"
+    />
+</form>

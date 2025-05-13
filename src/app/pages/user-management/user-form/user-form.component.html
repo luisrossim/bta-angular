@@ -1,0 +1,72 @@
+<app-header title="Novo usuário" />
+
+<div class="p-5 md:p-10 rounded-md">
+  <div class="flex flex-col items-center gap-3 mb-6">
+    <div class="w-5 h-1 bg-blue-500"></div>
+    <h1 class="font-semibold text-lg md:text-xl text-gray-700">Informações do usuário</h1>
+  </div>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-1 mb-10">
+      <div class="grid grid-cols-1 gap-6 w-full xl:w-1/2 mx-auto">
+        <p-floatlabel variant="on" class="w-full">
+          <input 
+            pInputText 
+            id="nome" 
+            formControlName="nome" 
+            autocomplete="off"
+            class="w-full"
+          />
+          <label for="nome">Nome</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on" class="w-full">
+          <input 
+            pInputText 
+            type="email" 
+            id="email" 
+            formControlName="email" 
+            class="w-full" 
+          />
+          <label for="email">E-mail</label>
+        </p-floatlabel>
+
+        
+        <p-floatlabel variant="on" class="w-full">
+          <input 
+            pInputText 
+            type="password" 
+            id="password" 
+            formControlName="password" 
+            class="w-full" 
+          />
+          <label for="password">Senha de acesso</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on" class="w-full">
+          <p-inputmask 
+            id="telefone"
+            formControlName="telefone"  
+            mask="(99) 99999-9999" 
+            [unmask]="true" 
+            styleClass="w-full" 
+          />
+          <label for="telefone">Telefone</label>
+        </p-floatlabel>
+
+        <div formGroupName="role">
+          <p-select formControlName="connect" [options]="roles" optionLabel="descricao" placeholder="Cargo" class="w-full" />
+        </div>
+
+         <p-button 
+            type="submit" 
+            label="Salvar" 
+            severity="primary" 
+            icon="pi pi-check text-sm"
+            [disabled]="this.userForm.invalid"
+            styleClass="w-full"
+          />
+      </div>
+    </div>
+  </form>
+</div>

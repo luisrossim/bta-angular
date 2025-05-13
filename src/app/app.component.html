@@ -1,0 +1,21 @@
+<p-toast />
+
+@if (isLoading) {
+    <app-loading />
+}
+
+@if (showLayout) {
+    <app-nav-mobile />
+
+    <app-sidenav
+        (onToggleSidenav)="onToggleSidenav($event)"
+    ></app-sidenav>
+    
+    <app-body
+        [collapsed]="isSideNavCollapsed"
+        [screenWidth]="screenWidth"
+    ></app-body>
+    
+} @else {
+    <router-outlet />
+}

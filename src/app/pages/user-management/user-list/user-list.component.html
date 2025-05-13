@@ -1,0 +1,51 @@
+<app-header title="Usuários e permissões" />
+
+<div class="p-5 md:p-10 rounded-md">
+  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+      <div class="w-1 h-5 bg-blue-500"></div>
+      <h1 class="font-semibold text-lg text-gray-700">Listagem de usuários</h1>
+    </div>
+    
+    <p-button label="Cadastrar" (onClick)="redirectToUserForm()" icon="pi pi-plus text-xs" size="small" />
+  </div>
+
+  <p-table
+    #dt
+    [value]="usuarios" 
+    stripedRows
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [tableStyle]="{'min-width': '50rem'}"
+  >
+    <ng-template #header>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Cargo</th>
+            <th>Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-usuario>
+      <tr>
+        <td>{{usuario.nome}}</td>
+        <td>{{usuario.email}}</td>
+        <td>{{usuario.telefone | phoneFormat}}</td>
+        <td>
+          <p-tag 
+            [severity]="getSeverity(usuario.role.id)" 
+            [value]="usuario.role.sigla" 
+          />
+        </td>
+        <td>
+          <div class="flex items-center gap-4">
+            <button type="button" (click)="editar()"><i class="pi pi-pencil text-slate-600 p-1"></i></button>
+            <button type="button" (click)="desativar()"><i class="pi pi-ban text-red-600 p-1"></i></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

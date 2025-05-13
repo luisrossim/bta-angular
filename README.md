@@ -1,2 +1,1 @@
-# bta-angular
-Front-end PWA Angular para gerenciamento de ordens de serviço. Integração com API.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
