@@ -1,0 +1,121 @@
+<app-header title="Novo cliente" />
+
+<div class="p-5 md:p-10 rounded-md">
+  <div class="flex flex-col items-center gap-3 mb-6">
+    <div class="w-5 h-1 bg-blue-500"></div>
+    <h1 class="font-semibold text-lg md:text-xl text-gray-700">Informações do cliente</h1>
+  </div>
+
+  <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-1 mb-10">
+      <div class="grid grid-cols-1 gap-6 w-full xl:w-1/2 mx-auto">
+        <p-floatlabel variant="on" class="w-full">
+          <input 
+            pInputText 
+            id="nome" 
+            formControlName="nome" 
+            autocomplete="off"
+            class="w-full"
+          />
+          <label for="nome">Nome</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on" class="w-full">
+          <p-inputmask 
+            id="telefone"
+            formControlName="telefone"  
+            mask="(99) 99999-9999" 
+            [unmask]="true" 
+            styleClass="w-full" 
+          />
+          <label for="telefone">Telefone</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on" class="w-full">
+          <p-inputmask 
+            id="cpf"
+            formControlName="cpf"
+            mask="999.999.999-99" 
+            [unmask]="true" 
+            styleClass="w-full" 
+          />
+          <label for="cpf">CPF</label>
+        </p-floatlabel>
+
+        <div formGroupName="enderecos">
+          <div formGroupName="create" class="grid grid-cols-1 gap-6">
+            <p-floatlabel variant="on" class="w-full">
+              <input 
+                pInputText 
+                id="cidade" 
+                formControlName="cidade" 
+                class="w-full" 
+              />
+              <label for="cidade">Cidade</label>
+            </p-floatlabel>
+
+            <p-floatlabel variant="on" class="w-full">
+              <input 
+                pInputText 
+                id="estado" 
+                formControlName="estado" 
+                class="w-full" 
+              />
+              <label for="estado">Estado</label>
+            </p-floatlabel>
+
+            <p-floatlabel variant="on" class="w-full">
+              <input 
+                pInputText
+                type="number"
+                id="hectare" 
+                formControlName="hectare" 
+                class="w-full" 
+              />
+              <label for="hectare">Hectare</label>
+            </p-floatlabel>
+
+            <div class="flex items-center gap-4">
+              <p-floatlabel variant="on" class="w-full">
+                <input 
+                  pInputText 
+                  id="coordenadasGeograficas" 
+                  formControlName="coordenadasGeograficas" 
+                  class="w-full" 
+                />
+                <label for="coordenadasGeograficas">Coordenadas Geográficas</label>
+              </p-floatlabel>
+
+              <p-button severity="secondary" icon="pi pi-search" />
+            </div>
+
+            <p-floatlabel variant="on" class="w-full">
+              <input 
+                pInputText 
+                type="number"
+                id="kmLojaCliente" 
+                formControlName="kmLojaCliente" 
+                class="w-full" 
+              />
+              <label for="kmLojaCliente">Loja x Cliente (km)</label>
+            </p-floatlabel>
+
+            <p-floatlabel variant="on" class="w-full">
+              <textarea id="referencia" rows="3" class="w-full" pTextarea formControlName="referencia"></textarea>
+              <label for="referencia">Referência</label>
+            </p-floatlabel>
+          </div>
+        </div>
+
+        <p-button 
+          type="submit" 
+          label="Salvar" 
+          severity="primary" 
+          icon="pi pi-check text-sm" 
+          [disabled]="this.clienteForm.invalid"
+          styleClass="w-full"
+        />
+      </div>
+    </div>
+  </form>
+</div>

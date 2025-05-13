@@ -1,0 +1,20 @@
+<app-header title="Materiais" />
+
+<div class="p-5 md:p-10 rounded-md">
+  <div class="flex items-center gap-3 mb-6">
+    <div class="w-1 h-5 bg-blue-500"></div>
+    <h1 class="font-semibold text-lg text-gray-700">Categorias</h1>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+    @for (categoria of categories; track $index) {
+      <button 
+        type="button" 
+        class="flex items-center gap-3 px-5 py-3 bg-blue-500 hover:bg-blue-600 duration-200 rounded-md"
+      >
+        <img [src]="categoria.icone" width="25px" alt="motobomba-icon">
+        <span class="text-white">{{ categoria.label }}</span>
+      </button>
+    }
+  </div>
+</div>

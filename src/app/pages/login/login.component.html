@@ -1,0 +1,30 @@
+<div class="w-screen h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
+    <div class="flex flex-col justify-center px-8 py-12 lg:px-24">
+        <div class="flex items-center gap-2 mb-14">
+            <img src="/assets/images/logo.svg" class="w-[18px] brightness-90" alt="icon">
+            <span class="text-blue-600 font-bold text-base">
+                BTA OS
+            </span>
+        </div>
+
+        <div class="mb-6">
+            <h1 class="text-3xl lg:text-5xl font-bold text-gray-900">
+                Olá, <br> Bem vindo!
+            </h1>
+            <p class="text-slate-600 font-light my-4">
+                Informe suas credenciais para ter acesso a plataforma.
+            </p>
+        </div>
+
+        <app-login-form />
+    </div>
+
+    <div
+        class="hidden lg:block hue-rotate-[25deg]"
+        style="
+            background-image: url('assets/images/wel.avif');
+            background-size: cover;
+            background-position: bottom;
+        "
+    ></div>
+</div>

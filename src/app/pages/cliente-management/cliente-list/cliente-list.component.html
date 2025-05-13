@@ -1,0 +1,65 @@
+<app-header title="Clientes" />
+
+<div class="p-5 md:p-10 rounded-md">
+  <div class="flex items-center gap-3 mb-6 md:mb-0">
+    <div class="w-1 h-5 bg-blue-500"></div>
+    <h1 class="font-semibold text-lg text-gray-700">Listagem de clientes</h1>
+  </div>
+
+  <p-table
+    #dt
+    [value]="clientes" 
+    stripedRows
+    [globalFilterFields]="['nome', 'cpf']"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [tableStyle]="{'min-width': '50rem'}"
+  >
+    <ng-template #caption>
+      <div class="flex flex-wrap items-center md:justify-end gap-4 mb-6 md:mb-0">
+        <p-iconfield iconPosition="left">
+          <p-inputicon>
+              <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Pesquisar"
+          />
+        </p-iconfield>
+
+        <p-button label="Cadastrar" (onClick)="redirectToForm()" icon="pi pi-plus text-xs" size="small" />
+      </div>
+    </ng-template>
+    <ng-template #header>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-cliente>
+        <tr>
+            <td>{{cliente.nome}}</td>
+            <td>{{cliente.cpf | cpfFormat}}</td>
+            <td>{{cliente.telefone | phoneFormat}}</td>
+            <td>
+              <p-tag 
+                [severity]="cliente.isAtivo ? 'success' : 'warn'" 
+                [value]="cliente.isAtivo ? 'Ativo' : 'Inativo'" 
+              />
+          </td>
+          <td>
+            <div class="flex items-center gap-4">
+              <button type="button" (click)="editar()"><i class="pi pi-pencil text-slate-600 p-1"></i></button>
+              <button type="button" (click)="desativar()"><i class="pi pi-ban text-red-600 p-1"></i></button>
+            </div>
+          </td>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>
