@@ -22,6 +22,6 @@ export const SidenavData = [
     {
         link: 'usuarios',
         icon: 'pi pi-shield',
-        label: 'Usuários e permissões'
+        label: 'Usuários'
     }
 ]
