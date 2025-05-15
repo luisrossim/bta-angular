@@ -23,8 +23,8 @@ export class UserListComponent implements OnInit {
 
   roleSeverityMap: { [key: number]: SeverityType } = {
     1: 'danger',
-    2: 'info',
-    3: 'success'
+    2: 'secondary',
+    3: 'info'
   };
 
   ngOnInit(): void {
