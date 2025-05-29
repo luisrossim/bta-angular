@@ -1,0 +1,44 @@
+<app-header title="Ordens de serviço" />
+
+<div class="p-5 md:p-10">
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div class="flex items-center gap-3">
+      <div class="w-1 h-5 bg-blue-500"></div>
+      <h1 class="font-semibold text-lg text-gray-700">Ordens ativas</h1>
+    </div>
+    
+    <div class="flex items-center gap-4">
+      <p-button label="Filtrar" icon="pi pi-filter text-xs" size="small" severity="secondary" />
+      <p-button label="Nova ordem de serviço" (onClick)="redirectToForm()" icon="pi pi-plus text-xs" size="small" severity="primary" />
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6">
+    @for (ordem of ordens; track $index) {
+      <button type="button" class="button-ordem-servico" (click)="redirectToInfo(ordem.id)">
+        <p class="font-semibold text-wrap">{{ ordem.cliente.nome }}</p>
+        <p class="text-blue-600 font-medium">{{ ordem.latestHistorico.etapa.descricao }}</p>
+
+        <div class="flex flex-wrap gap-4">
+          @if(ordem.latestHistorico.atribuicoes!.length > 0) {
+            @for (atribuicao of ordem.latestHistorico.atribuicoes; track $index) {
+              <div class="flex items-center gap-2 text-sm">
+                <i class="pi pi-wrench text-sm"></i>
+                <span>{{ atribuicao.usuario.nome }}</span>
+              </div>
+            }
+          } @else {
+            <p class="text-sm text-slate-600">Nenhum técnico atribúido</p>
+          }
+        </div>
+
+        <hr class="my-2">
+
+        <div class="text-sm">
+          <p><span class="font-medium">Atualizado em:</span> {{ ordem.latestHistorico.atualizadoEm | date:"dd/MM/yyyy 'às' HH:ss" }}</p>
+          <p><span class="font-medium">Criado em:</span> {{ ordem.criadoEm | date:"dd/MM/yyyy 'às' HH:ss" }}</p>
+        </div>
+      </button>
+    }
+  </div>
+</div>

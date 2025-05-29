@@ -13,4 +13,4 @@ export interface Role {
     sigla: string
 }
 
-export type SeverityType = 'danger' | 'success' | 'info' | 'secondary';
+export type SeverityType = "danger" | "info" | "contrast" | "secondary";

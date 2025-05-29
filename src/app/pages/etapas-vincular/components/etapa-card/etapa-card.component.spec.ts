@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderOrdemInfoComponent } from './header-ordem-info.component';
+import { EtapaCardComponent } from './etapa-card.component';
 
-describe('HeaderOrdemInfoComponent', () => {
-  let component: HeaderOrdemInfoComponent;
-  let fixture: ComponentFixture<HeaderOrdemInfoComponent>;
+describe('EtapaCardComponent', () => {
+  let component: EtapaCardComponent;
+  let fixture: ComponentFixture<EtapaCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderOrdemInfoComponent]
+      imports: [EtapaCardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeaderOrdemInfoComponent);
+    fixture = TestBed.createComponent(EtapaCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

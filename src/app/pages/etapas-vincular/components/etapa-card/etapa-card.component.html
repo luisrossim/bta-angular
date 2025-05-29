@@ -1,0 +1,30 @@
+ <div class="flex-1 items-center rounded-md border">
+  <div class="flex flex-col gap-4 mb-4">
+    <div class="flex justify-between items-center gap-4 bg-blue-50 px-5 py-3">
+      <div class="flex items-center gap-4">
+        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white">
+          {{ etapa.id }}
+        </div>
+        <h2 class="text-lg font-semibold text-blue-600">
+          {{ etapa.descricao }}
+        </h2>
+      </div>
+      <p-button type="button" label="Salvar" icon="pi pi-check" size="small" (onClick)="salvar()" [disabled]="disableActions" />
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2 px-6 pb-6">
+    @for (usuario of usuarios; track usuario.id) {
+      <div class="flex items-center gap-2">
+        <p-checkbox
+          name="{{ usuario.id }}"
+          [(ngModel)]="relacionadoMap[usuario.id]"
+          (ngModelChange)="toggleRelacionamento(usuario.id, $event)" 
+          [binary]="true" />
+        <p-tag [severity]="getSeverity(usuario.role)">
+          {{ usuario.nome }}
+        </p-tag>
+      </div>
+    }
+  </div>
+</div>
