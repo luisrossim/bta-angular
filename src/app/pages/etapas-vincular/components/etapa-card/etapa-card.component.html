@@ -9,10 +9,7 @@
           {{ etapa.descricao }}
         </h2>
       </div>
-      <button type="button" (click)="salvar()" class="flex items-center gap-2 text-white bg-blue-600 rounded-sm px-2 py-1">
-        <i class="pi pi-check text-xs"></i>
-        <span class="text-sm">Salvar</span>
-      </button>
+      <p-button type="button" label="Salvar" icon="pi pi-check" size="small" (onClick)="salvar()" [disabled]="disableActions" />
     </div>
   </div>
 
@@ -20,6 +17,7 @@
     @for (usuario of usuarios; track usuario.id) {
       <div class="flex items-center gap-2">
         <p-checkbox
+          name="{{ usuario.id }}"
           [(ngModel)]="relacionadoMap[usuario.id]"
           (ngModelChange)="toggleRelacionamento(usuario.id, $event)" 
           [binary]="true" />

@@ -1,1 +1,65 @@
-<p>ordem-form works!</p>
+<app-header title="Nova ordem de serviço" />
+
+<div class="p-5 md:p-10 rounded-md">
+  <div class="flex flex-col items-center gap-3 mb-6">
+    <div class="w-5 h-1 bg-blue-500"></div>
+    <h1 class="font-semibold text-lg md:text-xl text-gray-700">Preencha as informações</h1>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="grid grid-cols-1 gap-4 mb-6 w-full xl:w-1/2 mx-auto">
+      <p-select 
+        formControlName="cliente" 
+        [filter]="true" 
+        [options]="clientes" 
+        optionLabel="nome" 
+        placeholder="Cliente" 
+        class="w-full" 
+      />
+
+      <p-select 
+        formControlName="etapa" 
+        [options]="etapas" 
+        optionLabel="descricao"
+        placeholder="Etapa" 
+        class="w-full" 
+      />
+      
+      <div class="flex flex-col gap-4 mb-4">
+        <div class="flex items-center gap-2">
+          <p-checkbox formControlName="hasAutomacao" [binary]="true" />
+          <p>Automação</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <p-checkbox formControlName="hasProjetoPlantio" [binary]="true" />
+          <p>Projeto para Plantio</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <p-checkbox formControlName="hasOrcamentoBanco" [binary]="true" />
+          <p>Orçamento para Investimento (Banco)</p>
+        </div>
+
+        <p-floatlabel variant="on" class="mt-2">
+          <input 
+            pInputText 
+            id="setores" 
+            formControlName="quantidadeSetores" 
+            autocomplete="off"
+          />
+          <label for="setores">Quantidade de Setores</label>
+        </p-floatlabel>
+      </div>
+
+      <p-button 
+        label="Cadastrar" 
+        (onClick)="confirmAction($event)" 
+        styleClass="float-end" 
+        size="small" 
+        iconPos="right" 
+        icon="pi pi-arrow-right text-xs ml-4"
+      />
+    </div>
+  </form>
+</div>

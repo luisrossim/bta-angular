@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderOrdemInfoComponent } from './header-ordem-info.component';
+import { OrdemListComponent } from './ordem-list.component';
 
-describe('HeaderOrdemInfoComponent', () => {
-  let component: HeaderOrdemInfoComponent;
-  let fixture: ComponentFixture<HeaderOrdemInfoComponent>;
+describe('OrdemListComponent', () => {
+  let component: OrdemListComponent;
+  let fixture: ComponentFixture<OrdemListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderOrdemInfoComponent]
+      imports: [OrdemListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeaderOrdemInfoComponent);
+    fixture = TestBed.createComponent(OrdemListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

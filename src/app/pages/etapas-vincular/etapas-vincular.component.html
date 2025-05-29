@@ -3,7 +3,7 @@
 <div class="p-5 md:p-10 rounded-md">
   <div class="flex items-center gap-3 mb-8">
     <div class="w-1 h-5 bg-blue-500"></div>
-    <h1 class="font-semibold text-lg text-gray-700">Definição de usuários relacionados</h1>
+    <h1 class="font-semibold text-lg text-gray-700">Usuários vinculados em cada etapa</h1>
   </div>
 
   <div class="grid grid-cols-1 gap-8">
@@ -12,7 +12,7 @@
         [etapa]="etapa"
         [usuarios]="usuarios"
         [relacionados]="relacionamentosPorEtapa[etapa.id]"
-        (onSubmit)="handleSubmit($event)"
+        [onSubmit]="handleSubmit"
       ></app-etapa-card>
     }
   </div>

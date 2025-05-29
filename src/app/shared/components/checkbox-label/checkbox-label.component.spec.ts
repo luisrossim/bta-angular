@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AvatarUsuarioComponent } from './avatar-usuario.component';
+import { CheckboxLabelComponent } from './checkbox-label.component';
 
-describe('AvatarUsuarioComponent', () => {
-  let component: AvatarUsuarioComponent;
-  let fixture: ComponentFixture<AvatarUsuarioComponent>;
+describe('CheckboxLabelComponent', () => {
+  let component: CheckboxLabelComponent;
+  let fixture: ComponentFixture<CheckboxLabelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AvatarUsuarioComponent]
+      imports: [CheckboxLabelComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AvatarUsuarioComponent);
+    fixture = TestBed.createComponent(CheckboxLabelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

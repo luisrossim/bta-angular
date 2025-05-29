@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { EtapaCardComponent } from "./components/etapa-card/etapa-card.component";
 import { UsuarioService } from '../../core/services/user.service';
 import { Usuario } from '../../models/usuario';
+import { catchError, Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-etapas-vincular',
@@ -74,14 +75,12 @@ export class EtapasVincularComponent implements OnInit {
     return this.relacionamentosPorEtapa[etapaId] || [];
   }
 
-  handleSubmit(event: CreateEtapaUsuario){
-    this.etapaService.createRelacionamento(event).subscribe({
-      next: (result) => {
-        this.toastService.success('Relação salva com sucesso!')
-      },
-      error: (err) => {
-        this.toastService.error('Erro ao salvar relação.')
-      }
-    });
+  protected handleSubmit = (dados: CreateEtapaUsuario): Observable<any> => {
+    return this.etapaService.createRelacionamento(dados).pipe(
+      tap(() => console.log("tap test")),
+      catchError((err) => {
+        throw err;
+      })
+    )
   }
 }

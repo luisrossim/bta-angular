@@ -1,1 +1,68 @@
-<p>ordem-info works!</p>
+<app-header title="Informações da ordem de serviço" />
+
+<div class="p-5 md:p-10">
+  @if(ordem && latestHistorico){
+    <div class="flex items-center gap-2">
+      <p class="font-semibold">Cliente:</p>
+      <p>{{ ordem.cliente.nome }}</p>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <p class="font-semibold">Situação:</p>
+      <p class="text-blue-600 font-semibold">{{ latestHistorico.etapa.descricao }}</p>
+      <p class="text-slate-700">({{ latestHistorico.concluidoEm ? "Concluído" : "Em andamento" }})</p>
+    </div>
+
+    <div class="border p-4 bg-blue-50 border-blue-100 my-10">
+      <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+        <p class="text-blue-600 font-semibold text-lg">{{ latestHistorico.etapa.descricao }}</p>
+        <p class="text-slate-600 text-xs">{{ latestHistorico.id }}</p>
+      </div>
+
+      <p class="text-sm">Criado em: {{ latestHistorico.criadoEm | date:"dd/MM/yyyy 'às' HH:mm" }}</p>
+      <p class="text-sm">Atualizado em: {{ latestHistorico.atualizadoEm | date:"dd/MM/yyyy 'às' HH:mm" }}</p>
+
+      @for(atribuicao of latestHistorico.atribuicoes; track $index){
+        <div class="flex items-center gap-2 text-sm font-medium my-2">
+          <i class="pi pi-user text-xs"></i>
+          <p>{{ atribuicao.usuario.nome }}</p>
+        </div>
+      }
+      
+      @if(!latestHistorico.concluidoEm) {
+        <form [formGroup]="atribuicaoForm" class="flex items-center gap-2 my-4">
+          <p-select 
+            formControlName="usuarioId" 
+            [options]="latestHistorico.etapa.etapaUsuario" 
+            optionLabel="usuario.nome" 
+            optionValue="usuario.id"
+            placeholder="Atribuir técnico"
+            size="small"
+            class="w-full bg-blue-100" 
+          />
+          <p-button label="Atribuir" size="small" styleClass="!px-2 !py-[0.3rem]" [disabled]="atribuicaoForm.invalid" (onClick)="atribuirUsuario()" />
+        </form>
+
+        <p-button label="Concluir etapa" class="flex justify-end" severity="success" size="small" (onClick)="concluirEtapa()" />
+      } @else {
+        <p-button label="Avançar etapa" class="flex justify-end" severity="primary" size="small" (onClick)="avancarEtapa()" />
+      }
+    </div>
+
+    <div class="grid grid-cols-1 gap-4">
+      @for (historico of ordem.historicoOs.slice(1); track historico.id) {
+        <div class="border p-4 bg-slate-50">
+          <small>{{ historico.id }}</small>
+          <div class="flex flex-wrap justify-between items-center gap-2">
+            <p class="text-blue-600 font-medium text-lg">{{ historico.etapa.descricao }}</p>
+            <p>{{ historico.criadoEm | date:"dd/MM/yyyy 'às' HH:mm" }}</p>
+          </div>
+
+          @for(atribuicao of historico.atribuicoes; track $index){
+            <p>{{ atribuicao.usuario.nome }}</p>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -8,27 +8,27 @@ import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../core/services/auth.service';
 import { ToastService } from '../../shared/services/toast.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmService } from '../../shared/services/confirm.service';
 
 @Component({
   selector: 'app-sidenav',
   standalone: true,
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css',
-  imports: [CommonModule, RouterModule, TooltipModule, ButtonModule, ConfirmDialogModule],
-  providers: [ConfirmationService]
+  imports: [CommonModule, RouterModule, TooltipModule, ButtonModule, ConfirmDialogModule]
 })
 export class SidenavComponent implements OnInit {
   @Output() onToggleSidenav: EventEmitter<SidenavToggle> = new EventEmitter();
   private readonly authService = inject(AuthService);
   private readonly toastService = inject(ToastService);
+  private readonly confirmService = inject(ConfirmService);
   private router = inject(Router);
 
   collapsed = false;
   screenWidth = 0;
   sidenavData = SidenavData;
 
-  constructor(private confirmationService: ConfirmationService){}
+  constructor(){}
 
   @HostListener('window:resize')
   onResize() {
@@ -54,27 +54,13 @@ export class SidenavComponent implements OnInit {
   }
 
   confirmLogout(event: Event) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
+    this.confirmService.confirmation({
+      event: event,
       message: 'Deseja realmente sair da aplicação?',
-      header: 'Confirmação',
-      closable: true,
-      closeOnEscape: true,
-      icon: 'pi pi-exclamation-circle',
-      rejectButtonProps: {
-          label: 'Cancelar',
-          severity: 'secondary',
-          outlined: true,
-      },
-      acceptButtonProps: {
-          label: 'Sair',
-          severity: 'danger',
-      },
-      accept: () => {
-        this.logout();
-      },
-      reject: () => {},
-    });
+      acceptButtonLabel: 'Sair',
+      acceptButtonSeverity: 'danger',
+      onAccept: () => this.logout()
+    })
   }
 
   logout(): void {

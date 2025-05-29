@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrdemManagementComponent } from './ordem-management.component';
+import { UploadFileComponent } from './upload-file.component';
 
-describe('OrdemManagementComponent', () => {
-  let component: OrdemManagementComponent;
-  let fixture: ComponentFixture<OrdemManagementComponent>;
+describe('UploadFileComponent', () => {
+  let component: UploadFileComponent;
+  let fixture: ComponentFixture<UploadFileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OrdemManagementComponent]
+      imports: [UploadFileComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OrdemManagementComponent);
+    fixture = TestBed.createComponent(UploadFileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

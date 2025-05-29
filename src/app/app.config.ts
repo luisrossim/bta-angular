@@ -11,6 +11,7 @@ import { AuraCustom } from './shared/styles/auraCustom';
 
 import { routes } from './app.routes';
 import { httpInterceptor } from './core/interceptor/http.interceptor';
+import { ConfirmationService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,6 +42,7 @@ export const appConfig: ApplicationConfig = {
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    ConfirmationService,
   ]
 };

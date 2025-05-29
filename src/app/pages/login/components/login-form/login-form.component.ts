@@ -48,7 +48,6 @@ export class LoginFormComponent {
 
 
   actionsForLoginSuccess(): void {
-    this.toastService.success('Login realizado com successo.');
     this.router.navigateByUrl('ordens');
   }
 }
